@@ -196,7 +196,7 @@
                         autoClose: false
                 });
                 map.addLayer(marker);
-                marker.on('click', onClick_Marker)
+                marker.on('mouseover', onHover_Marker)
                 // Attach the corresponding JSON data to your marker:
                 marker.myJsonData =jsonDataObject[j];
         
@@ -205,6 +205,14 @@
                         popup = L.popup()
                         .setLatLng(marker.getLatLng())
                         .setContent("Order ID: " + marker.myJsonData.OderID + " || Item: " +   marker.myJsonData.Item)
+                        .openOn(map);
+                    }
+                
+                function onHover_Marker(e) {
+                        var marker = e.target;
+                        popup = L.popup()
+                        .setLatLng(marker.getLatLng())
+                        .setContent("Order ID: " + marker.myJsonData.OderID + " || Dispatched: " + marker.myJsonData.Dispatched + " || Shipped: " + marker.myJsonData.Shipped + " || City: " + marker.myJsonData.City)
                         .openOn(map);
                     }
 
